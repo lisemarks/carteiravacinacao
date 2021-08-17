@@ -1,0 +1,27 @@
+{
+  "name": "carteiravacinacao",
+  "version": "1.0.0",
+  "description": "Controlar a carteirinha de vacinação do paciente",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lisemarks/carteiravacinacao.git"
+  },
+  "author": "Lisemar Kaleski Sampaio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lisemarks/carteiravacinacao/issues"
+  },
+  "homepage": "https://github.com/lisemarks/carteiravacinacao#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.12",
+    "request": "^2.88.2"
+  }
+}
