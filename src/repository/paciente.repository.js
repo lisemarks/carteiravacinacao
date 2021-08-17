@@ -133,6 +133,66 @@ module.exports = () => {
         })
     }
 
+    repository.buscarvacinastomadas = (id, callback)  => {
+        conectar((connection, err) => {
+            if (err) {
+                const error = new Error()
+                error.message = "Não foi possível conectar ao banco de dados"
+                error.httpStatusCode = 500
+                error.code = 'ERRO1'
+                return callback(null, error)
+            }
+
+            connection.query('select v.Nome as nomevacina, u.nome as suaunidadesaude, cv.dataaplicacao from cadcarteiravacinacao cv join cadpaciente p on p.id = cv.idPaciente join cadvacina v on v.id = cv.idVacina left join cadunidadesaude u on u.id = p.idUnidadeSaude where p.id = ? and cv.Tomou = 1', [id] , function (err, rows) {
+                if (err) {
+                    console.log(err)
+                    return;
+                }
+                return callback(rows)
+            })
+        })
+    }
+
+    repository.buscarvacinasnaotomadas = (id, callback)  => {
+        conectar((connection, err) => {
+            if (err) {
+                const error = new Error()
+                error.message = "Não foi possível conectar ao banco de dados"
+                error.httpStatusCode = 500
+                error.code = 'ERRO1'
+                return callback(null, error)
+            }
+
+            connection.query('select v.Nome as nomevacina, u.nome as suaunidadesaude, cv.datavencimento from cadcarteiravacinacao cv join cadpaciente p on p.id = cv.idPaciente join cadvacina v on v.id = cv.idVacina left join cadunidadesaude u on u.id = p.idUnidadeSaude where p.id = ? and cv.Tomou = 0', [id] , function (err, rows) {
+                if (err) {
+                    console.log(err)
+                    return;
+                }
+                return callback(rows)
+            })
+        })
+    }
+
+    repository.buscarvacinasavencerquinzedias = (id, callback)  => {
+        conectar((connection, err) => {
+            if (err) {
+                const error = new Error()
+                error.message = "Não foi possível conectar ao banco de dados"
+                error.httpStatusCode = 500
+                error.code = 'ERRO1'
+                return callback(null, error)
+            }
+
+            connection.query('select v.Nome as nomevacina, u.nome as suaunidadesaude, cv.datavencimento from cadcarteiravacinacao cv join cadpaciente p on p.id = cv.idPaciente join cadvacina v on v.id = cv.idVacina left join cadunidadesaude u on u.id = p.idUnidadeSaude where p.id = ? and cv.Tomou = 0 and cv.datavencimento between curdate() and date_add(curdate(), interval 15 day)', [id] , function (err, rows) {
+                if (err) {
+                    console.log(err)
+                    return;
+                }
+                return callback(rows)
+            })
+        })
+    }
+
     return repository
 
 }

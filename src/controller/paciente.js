@@ -31,6 +31,48 @@ module.exports = () => {
         })
     }
 
+    controller.listarvacinastomadas = (req, res) => {
+        const id = req.params.id 
+
+        pacienteRep.buscarvacinastomadas(id, (pacientes, err) => {    
+            if (err) {
+                return callback(err)
+            }
+            if (pacientes.length == 0)
+                res.status(404).json(pacientes)        
+            else
+                res.status(200).json(pacientes)     
+        })
+    }
+
+    controller.listarvacinasnaotomadas = (req, res) => {
+        const id = req.params.id 
+
+        pacienteRep.buscarvacinasnaotomadas(id, (pacientes, err) => {    
+            if (err) {
+                return callback(err)
+            }
+            if (pacientes.length == 0)
+                res.status(404).json(pacientes)        
+            else
+                res.status(200).json(pacientes)     
+        })
+    }
+
+    controller.listarvacinasavencerquinzedias = (req, res) => {
+        const id = req.params.id 
+
+        pacienteRep.buscarvacinasavencerquinzedias(id, (pacientes, err) => {    
+            if (err) {
+                return callback(err)
+            }
+            if (pacientes.length == 0)
+                res.status(404).json(pacientes)        
+            else
+                res.status(200).json(pacientes)     
+        })
+    }
+
     controller.salvar = (req, res, callback) => {
         const pacientes = req.body;   
 
