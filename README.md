@@ -15,13 +15,17 @@
 
 Para testar a aplicação tenha instalado na sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
-Além disto é bom ter um editor para trabalhar com o código.
+Além disto é bom ter um editor para trabalhar com o código e um aplicativo para testes (No meu caso utilizo o postman).
 
 ### Instalações se necessárias
 npm install axios --save 
+
 npm install express --save 
+
 npm install mysql --save 
+
 npm install request --save 
+
 npm install nodemon --save
 
 ### Rodando a aplicação
